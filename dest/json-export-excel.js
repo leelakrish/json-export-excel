@@ -29,6 +29,8 @@
                     });
 
                     function _getFields() {
+                      fields = [];
+                      header = [];
                       angular.forEach(scope.reportFields, function(field, key) {
                         if(!field || !key) {
                             throw new Error('error json report fields');
