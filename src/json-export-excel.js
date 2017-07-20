@@ -19,10 +19,10 @@
                     var separator = scope.separator || ';';
 
                     element.bind('click', function() {
-                        var fields = _getFields();
+                        _getFields();
                         var bodyData = _bodyData();
                         var strData = _convertToExcel(bodyData);
-
+                        
                         var blob = new Blob([strData], {type: "text/plain;charset=utf-8"});
 
                         return saveAs(blob, [scope.filename + '.csv']);
