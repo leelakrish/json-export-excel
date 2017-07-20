@@ -18,16 +18,8 @@
                     var header = [];
                     var separator = scope.separator || ';';
 
-                    angular.forEach(scope.reportFields, function(field, key) {
-                        if(!field || !key) {
-                            throw new Error('error json report fields');
-                        }
-
-                        fields.push(key);
-                        header.push(field);
-                    });
-
                     element.bind('click', function() {
+                        var fields = _getFields();
                         var bodyData = _bodyData();
                         var strData = _convertToExcel(bodyData);
 
@@ -36,6 +28,17 @@
                         return saveAs(blob, [scope.filename + '.csv']);
                     });
 
+                    function _getFields() {
+                      angular.forEach(scope.reportFields, function(field, key) {
+                        if(!field || !key) {
+                            throw new Error('error json report fields');
+                        }
+
+                        fields.push(key);
+                        header.push(field);
+                      });
+                    }
+                    
                     function _bodyData() {
                         var data = scope.data;
                         var body = "";
